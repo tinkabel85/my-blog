@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Form.css";
 
 function Form(props) {
 	const [postTitle, setPostTitle] = useState("");
@@ -22,7 +23,8 @@ function Form(props) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form">
+            <p>Your can create here your new post</p>
 			<input
 				value={postTitle}
 				type="text"
