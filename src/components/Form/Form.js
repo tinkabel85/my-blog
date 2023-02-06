@@ -13,6 +13,7 @@ function Form(props) {
 		}
 		console.log(postTitle, postAuthor, postContent);
 		props.addPost({
+			id: props.generateId(),
 			title: postTitle,
 			author: postAuthor,
 			content: postContent,

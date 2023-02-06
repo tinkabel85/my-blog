@@ -9,8 +9,8 @@ function BlogsList(props) {
     // }
     return (
 			<ul className="list">
-				{posts.map((post, i) => (
-                    <PostArticle key={i} post={post}
+				{posts.map((post, index) => (
+                    <PostArticle key={index} post={post} setPosts={setPosts}
                         // onEdit={handleEdit}
                     />
             ))}

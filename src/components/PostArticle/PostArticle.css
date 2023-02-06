@@ -1,32 +1,40 @@
 .post {
-    width: 80%;
-    margin: 0 auto;
-    height: 100px;
-    border: 1px solid grey;
-    margin-bottom: 5px;
-    border-radius: 3px;
-    overflow: scroll;
-    background-color: whitesmoke;
+	width: 80%;
+	margin: 0 auto;
+	height: 100px;
+	border: 1px solid grey;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	overflow: scroll;
+	background-color: whitesmoke;
 }
 
 .post__wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
 }
 .post__header {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 30px;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 30px;
 }
-.btn--edit {
-	background-color: #a8ada8;
-	border: 1px solid #535453;
-    border-radius: 3px;
-	color: #ffffff;
-	padding: 2px 5px;
-	text-align: center;
-	font-size: 16px;
-    cursor: pointer;
-    float: right;
+
+.post__content {
+	color: rgb(86, 85, 85);
+	padding: 5px;
+}
+
+.post--edits {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 60vw;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.post--edits button {
+    width: 13%;
+    align-self: flex-end;
+    margin-right: 5px;
 }

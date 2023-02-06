@@ -4,16 +4,22 @@ import Form from "./components/Form/Form";
 import BlogsList from "./components/BlogsList/BlogsList";
 import "./App.css";
 
+let s4 = () => {
+	return Math.floor((1 + Math.random()) * 0x10000)
+		.toString(16)
+		.substring(1);
+};
 function App() {
   const [posts, setPosts] = useState([
-		{  title: "Post 1", author: "Author1",  content: "Content of post 1" },
-		{ title: "Post 2", author: "Author12", content: "Content of post 2" },
-	]);
+		{  id: s4(), title: "Post 1", author: "Author1",  content: "Content of post 1" },
+    { id: s4(), title: "Post 2", author: "Author12", content: "Content of post 2" },
+  ]);
+  console.log([...posts]);
 
 	return (
 		<div className="App">
 			<Header />
-      <Form addPost={(post) => setPosts([...posts, post]) } />
+      <Form generateId={s4} addPost={(post) => setPosts([...posts, post]) } />
       <BlogsList posts={posts} setPosts= {setPosts}/>
 		</div>
 	);

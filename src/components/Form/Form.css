@@ -1,5 +1,5 @@
 .form {
-	width: 60%;
+	width: 70%;
 	margin: auto;
 	margin-bottom: 30px;
 	display: flex;
@@ -21,6 +21,7 @@
 	overflow: scroll;
 }
 .form__btn {
-	width: 10%;
+	width: 13%;
 	align-self: flex-end;
+	margin-right: 10px;
 }
