@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header/Header";
+import Form from "./components/Form/Form";
+import BlogsList from "./components/BlogsList/BlogsList";
+import "./App.css";
 
+let s4 = () => {
+	return Math.floor((1 + Math.random()) * 0x10000)
+		.toString(16)
+		.substring(1);
+};
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [posts, setPosts] = useState([
+		{  id: s4(), title: "Post 1", author: "Author1",  content: "Content of post 1" },
+    { id: s4(), title: "Post 2", author: "Author12", content: "Content of post 2" },
+  ]);
+  console.log([...posts]);
+
+	return (
+		<div className="App">
+			<Header />
+      <Form generateId={s4} addPost={(post) => setPosts([...posts, post]) } />
+      <BlogsList posts={posts} setPosts= {setPosts}/>
+		</div>
+	);
 }
 
 export default App;

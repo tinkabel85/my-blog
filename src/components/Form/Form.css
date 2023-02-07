@@ -1,0 +1,27 @@
+.form {
+	width: 70%;
+	margin: auto;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.5rem;
+	height: auto;
+}
+.form input {
+    height: 1.5rem;
+}
+.form input:focus {
+	border-color: rgb(195, 168, 193);
+	outline: none;
+}
+.form .content {
+	height: 4rem;
+	text-align: start;
+	overflow: scroll;
+}
+.form__btn {
+	width: 13%;
+	align-self: flex-end;
+	margin-right: 10px;
+}
