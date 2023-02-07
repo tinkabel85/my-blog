@@ -2,8 +2,11 @@ import { useState } from "react";
 import "./PostArticle.css";
 
 function PostArticle(props) {
-	const { post, setPosts } = props;
+	const { post, setPosts, posts } = props;
 	const [isEditing, setEditing] = useState(false);
+	const [postTitle, setPostTitle] = useState(post.title);
+	const [postAuthor, setPostAuthor] = useState(post.author);
+	const [postContent, setPostContent] = useState(post.content);
 
 	const onClickEdit = (post) => {
 		setEditing(true);
@@ -11,7 +14,20 @@ function PostArticle(props) {
 	};
 
 	const handleSave = () => {
-		setPosts()
+		const newPosts = [...posts].map((p) => {
+			if (post.id === p.id) {
+				return {
+					...p,
+					title: postTitle,
+					author: postAuthor,
+					content: postContent,
+				};
+			}
+			return p;
+		});
+
+		setPosts(newPosts);
+		setEditing(false);
 	};
 
 	const handleCancel = () => {
@@ -22,17 +38,17 @@ function PostArticle(props) {
 		<div className="post--edits">
 			<input
 				type="text"
-				value={post.title}
-				onChange={(e) => post.setPostTitle(e.target.value)}
+				value={postTitle}
+				onChange={(e) => setPostTitle(e.target.value)}
 			/>
 			<input
 				type="text"
-				value={post.author}
-				onChange={(e) => post.setPostAuthor(e.target.value)}
+				value={postAuthor}
+				onChange={(e) => setPostAuthor(e.target.value)}
 			/>
 			<textarea
-				value={post.content}
-				onChange={(e) => post.setPostContent(e.target.value)}
+				value={postContent}
+				onChange={(e) => setPostContent(e.target.value)}
 			/>
 			<div className="buttons--edits">
 				<button onClick={handleSave}>Save</button>
