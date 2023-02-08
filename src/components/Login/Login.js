@@ -25,12 +25,8 @@ function Login(props) {
 			console.log("error, user is not found");
 			return alert("Your username or password are not valid");
 		} else {
-			let varifiedUsers = JSON.parse(localStorage.getItem("varifiedUsers"));
-			if (!varifiedUsers) {
-				varifiedUsers = [];
-			}
-			varifiedUsers.push(user);
-			localStorage.setItem("varifiedUsers", JSON.stringify(varifiedUsers));
+            let verifiedUser = { userName, password };
+			localStorage.setItem("varifiedUser", JSON.stringify(verifiedUser));
 			props.setIsAuthenticated(true);
 			console.log("Your are successfully logged in");
 		}
@@ -40,16 +36,13 @@ function Login(props) {
 
 	useEffect(() => {
 		console.log("smth");
-		let varifiedUsers = JSON.parse(localStorage.getItem("varifiedUsers"));
-		if (!varifiedUsers) {
-			varifiedUsers = [];
-		}
-		if (props.isAuthenticated) {
+		let verifiedUser = JSON.parse(localStorage.getItem("varifiedUser"));
+		if (verifiedUser) {
 			const user = storedUsers.find(
-				(user) => user.username === userName && user.password === password
-			);
-			varifiedUsers.push(user);
-			localStorage.setItem("varifiedUsers", JSON.stringify(varifiedUsers));
+				(user) => user.username === verifiedUser.userName && user.password === verifiedUser.password);
+            if (user) {
+                props.setIsAuthenticated(true);
+            }
 		}
 	}, [props.isAuthenticated, userName, password]);
 

@@ -62,7 +62,7 @@ function PostArticle(props) {
 					<div className="post__title">{post.title}</div>
 					<div className="post__author">{post.author}</div>
 				</div>
-				<textarea className="post__content">{post.content}</textarea>
+				<div className="post__content">{post.content}</div>
 			</li>
 		</div>
 	);
