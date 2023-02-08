@@ -9,7 +9,6 @@ const storedUsers = [
 function Login(props) {
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
-	//const [isValid, setValid] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -23,9 +22,8 @@ function Login(props) {
 			(user) => user.username === userName && user.password === password
 		);
 		if (!user) {
-            console.log("error, user is not found");
-            return alert("Your username or password are not valid");
-            
+			console.log("error, user is not found");
+			return alert("Your username or password are not valid");
 		} else {
 			let varifiedUsers = JSON.parse(localStorage.getItem("varifiedUsers"));
 			if (!varifiedUsers) {
@@ -33,12 +31,48 @@ function Login(props) {
 			}
 			varifiedUsers.push(user);
 			localStorage.setItem("varifiedUsers", JSON.stringify(varifiedUsers));
-			props.setAuthenticated(true);
+			props.setIsAuthenticated(true);
 			console.log("Your are successfully logged in");
 		}
 		setUserName("");
 		setPassword("");
 	};
+
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	if (!userName || !password) {
+	// 		return alert("User name or user password cannot be empty");
+	// 	}
+	// 	console.log(userName);
+	// 	console.log(password);
+
+	// 	const user = storedUsers.find(
+	// 		(user) => user.username === userName && user.password === password
+	// 	);
+	// 	if (!user) {
+	// 		console.log("error, user is not found");
+	// 		return alert("Your username or password are not valid");
+	// 	} else {
+	// 		props.setIsAuthenticated(true);
+	// 		// setUserName("");
+	// 		// setPassword("");
+	// 	}
+	// };
+
+	useEffect(() => {
+		console.log("smth");
+		let varifiedUsers = JSON.parse(localStorage.getItem("varifiedUsers"));
+		if (!varifiedUsers) {
+			varifiedUsers = [];
+		}
+		if (props.isAuthenticated) {
+			const user = storedUsers.find(
+				(user) => user.username === userName && user.password === password
+			);
+			varifiedUsers.push(user);
+			localStorage.setItem("varifiedUsers", JSON.stringify(varifiedUsers));
+		}
+	}, [props.isAuthenticated, userName, password]);
 
 	return (
 		<div className="Login-container">

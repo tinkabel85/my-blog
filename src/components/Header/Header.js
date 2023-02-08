@@ -5,7 +5,7 @@ function Header(props) {
 	return (
 		<div>
 			<h1 className="Title">This is a blog</h1>
-			<Login isAuthenticated={props.isAuthenticated} setAuthenticated={props.setAuthenticated} />
+			<Login isAuthenticated={props.isAuthenticated} setIsAuthenticated={props.setIsAuthenticated} />
 		</div>
 	);
 }

@@ -10,7 +10,7 @@ let s4 = () => {
 		.substring(1);
 };
 function App() {
-	const [isAuthenticated, setAuthenticated] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [posts, setPosts] = useState( () => {
 		const postsArr = JSON.parse(localStorage.getItem("posts"));
 		if (!postsArr) {
@@ -49,7 +49,7 @@ function App() {
 
 	return !isAuthenticated ? (
 		<Header
-			setAuthenticated={setAuthenticated}
+			setIsAuthenticated={setIsAuthenticated}
 			isAuthenticated={isAuthenticated}
 		/>
 	) : (
