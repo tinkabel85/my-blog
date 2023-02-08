@@ -1,0 +1,24 @@
+.Login-container {
+	width: 80vw;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.Login-text {
+	margin: 10px 0;
+}
+
+.Login-form {
+    width: 50%;
+	margin: auto;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.5rem;
+	height: auto;
+}
+.Login-container input {
+	float: right;
+    width: 40%;
+}

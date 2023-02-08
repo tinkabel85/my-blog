@@ -10,6 +10,7 @@ let s4 = () => {
 		.substring(1);
 };
 function App() {
+	const [isAuthenticated, setAuthenticated] = useState(false);
 	const [posts, setPosts] = useState( () => {
 		const postsArr = JSON.parse(localStorage.getItem("posts"));
 		if (!postsArr) {
@@ -46,10 +47,13 @@ function App() {
 		localStorage.setItem("posts", JSON.stringify(posts));
 	}, [posts]);
 
-	return (
+	return !isAuthenticated ? (
+		<Header
+			setAuthenticated={setAuthenticated}
+			isAuthenticated={isAuthenticated}
+		/>
+	) : (
 		<div className="App">
-			<Header />
-			{/* <Form generateId={s4} addPost={addPost} /> */}
 			<Form generateId={s4} addPost={(post) => setPosts([...posts, post])} />
 			<BlogsList posts={posts} setPosts={setPosts} />
 		</div>

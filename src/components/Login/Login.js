@@ -1,28 +1,31 @@
 import { useState, useEffect } from "react";
+import "./Login.css";
 
 const storedUsers = [
 	{ username: "oksana", password: "1234" },
 	{ username: "user", password: "111" },
 ];
 
-function Login() {
+function Login(props) {
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
-	const [isValid, setValid] = useState(false);
+	//const [isValid, setValid] = useState(false);
 
 	const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!userName || ! password) { 
-            return alert('User name or user password cannot be empty')
-        }
+		e.preventDefault();
+		if (!userName || !password) {
+			return alert("User name or user password cannot be empty");
+		}
 		console.log(userName);
 		console.log(password);
 
 		const user = storedUsers.find(
-			user => user.username === userName && user.password === password
+			(user) => user.username === userName && user.password === password
 		);
 		if (!user) {
-			console.log("error, user is not found");
+            console.log("error, user is not found");
+            return alert("Your username or password are not valid");
+            
 		} else {
 			let varifiedUsers = JSON.parse(localStorage.getItem("varifiedUsers"));
 			if (!varifiedUsers) {
@@ -30,39 +33,27 @@ function Login() {
 			}
 			varifiedUsers.push(user);
 			localStorage.setItem("varifiedUsers", JSON.stringify(varifiedUsers));
-			setValid(true);
+			props.setAuthenticated(true);
 			console.log("Your are successfully logged in");
-        }
-        setUserName('');
-        setPassword('');
+		}
+		setUserName("");
+		setPassword("");
 	};
 
-	// 	const newUserData = [...userData, { name: userName, password: password }];
-	// 	localStorage.setItem("user", JSON.stringify(newUserData));
-	// 	setUserData(newUserData);
-	// 	setUserName("");
-	// 	setPassword("");
-	// };
-
-	// useEffect(() => {
-	// 	const storedUser = JSON.parse(localStorage.getItem("user"));
-	// 	setUserData(storedUser || []);
-	// }, []);
-	// useEffect(() => {
-	// 	localStorage.setItem("user", JSON.stringify(userData));
-	// }, [userData]);
-
 	return (
-		<>
-			<form onSubmit={handleSubmit} className="form">
+		<div className="Login-container">
+			<div className="Login-text">
+				You need to login to access posts. <br></br>Please enter your username
+				and password and click Login.
+			</div>
+			<form onSubmit={handleSubmit} className="Login-form">
 				<label>
 					Your Name:
 					<input
-						
 						value={userName}
 						type="text"
 						onInput={(e) => setUserName(e.target.value)}
-					></input>{" "}
+					></input>
 				</label>
 
 				<label>
@@ -71,11 +62,12 @@ function Login() {
 						value={password}
 						type="password"
 						onInput={(e) => setPassword(e.target.value)}
-					></input>{" "}
+					></input>
 				</label>
-				<input type="submit" value="Submit" className="form__btn" />
+				<br></br>
+				<input type="submit" value="Login" className="form__btn" />
 			</form>
-		</>
+		</div>
 	);
 }
 
