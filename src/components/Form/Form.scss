@@ -1,0 +1,41 @@
+.Form {
+	width: 70%;
+	margin: auto;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.7rem;
+	height: auto;
+
+	&__input {
+		height: 2rem;
+		border: 2px solid #ccc;
+
+		&--text {
+			height: 4rem;
+			text-align: start;
+			overflow-y: scroll;
+			max-width: 100%;
+			min-width: 100%;
+			resize: both;
+		}
+	}
+
+	&__input:focus {
+		outline: none;
+		border: 2px solid rgb(195, 168, 193);
+	}
+
+	&__btn {
+		width: 13%;
+		align-self: flex-end;
+		background: rgb(203, 224, 216);
+		padding: 3px 7px;
+		cursor: pointer;
+		border-radius: 4px;
+		border: 1px solid grey;
+		color: rgb(49, 49, 49);
+		letter-spacing: 0.2em;
+	}
+}

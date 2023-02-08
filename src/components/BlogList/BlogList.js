@@ -1,11 +1,11 @@
 import PostArticle from "../PostArticle/PostArticle";
-import "./BlogList.css";
+import "./BlogList.scss";
 
-function BlogsList(props) {
+function BlogList(props) {
 	const { posts, setPosts } = props;
 
 	return (
-		<ul className="list">
+		<ul className="Bloglist">
 			{posts.map((post, index) => (
 				<PostArticle
 					key={index}
@@ -18,4 +18,4 @@ function BlogsList(props) {
 	);
 }
 
-export default BlogsList;
+export default BlogList;

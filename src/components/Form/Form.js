@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Form.css";
+import "./Form.scss";
 
 function Form(props) {
 	const [postTitle, setPostTitle] = useState("");
@@ -24,30 +24,30 @@ function Form(props) {
 	};
 
 	return (
-        <form onSubmit={handleSubmit} className="form">
-            <p>Your can create here your new post</p>
+		<form onSubmit={handleSubmit} className="Form">
+			<p>Your can create here your new post</p>
 			<input
 				value={postTitle}
 				type="text"
-				className="title"
-				placeholder="Create a title for your post"
+				className="Form__input"
+				placeholder="Create a title for your post..."
 				onInput={(e) => setPostTitle(e.target.value)}
 			/>
 			<input
 				value={postAuthor}
 				type="text"
-				className="author"
+				className="Form__input"
 				placeholder="Here goes your name..."
 				onInput={(e) => setPostAuthor(e.target.value)}
 			/>
-			<input
+			<textarea
 				value={postContent}
 				type="text"
-				className="content"
+				className="Form__input Form__input--text"
 				placeholder="Here goes your post..."
 				onInput={(e) => setPostContent(e.target.value)}
 			/>
-			<input type="submit" value="Submit" className="form__btn" />
+			<input type="submit" value="Submit" className="Form__btn" />
 		</form>
 	);
 }
