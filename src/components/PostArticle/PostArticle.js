@@ -59,10 +59,12 @@ function PostArticle(props) {
 		<div className="PostArticle" onDoubleClick={() => onClickEdit()}>
 			<li className="PostArticle-wrapper">
 				<div className="PostArticle__header">
-					<div className="post__title">{post.title}</div>
-					<div className="post__author">{post.author}</div>
+					<div className="PostArticle__header--title">Title: {post.title}</div>
+					<div className="PostArticle__header--author">
+						Author: {post.author}
+					</div>
 				</div>
-				<div className="post__content">{post.content}</div>
+				<div className="PostArticle__content">{post.content}</div>
 			</li>
 		</div>
 	);

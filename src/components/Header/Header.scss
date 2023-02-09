@@ -1,4 +1,12 @@
+body {
+	padding-top: 12vh;
+}
 .Header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: whitesmoke;
+	width: 100%;
 	&__title {
 		text-align: center;
 		margin: 30px 20px;
