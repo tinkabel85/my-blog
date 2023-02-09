@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./PostArticle.css";
+import "./PostArticle.scss";
 
 function PostArticle(props) {
 	const { post, setPosts, posts } = props;
@@ -35,7 +35,7 @@ function PostArticle(props) {
 	};
 
 	return isEditing ? (
-		<div className="post--edits">
+		<div className="PostArticle-edits">
 			<input
 				type="text"
 				value={postTitle}
@@ -50,19 +50,19 @@ function PostArticle(props) {
 				value={postContent}
 				onChange={(e) => setPostContent(e.target.value)}
 			/>
-			<div className="buttons--edits">
+			<div className="PostArticle-edits__btns">
 				<button onClick={handleSave}>Save</button>
 				<button onClick={handleCancel}>Cancel</button>
 			</div>
 		</div>
 	) : (
-		<div className="post" onDoubleClick={() => onClickEdit()}>
-			<li className="post__wrapper">
-				<div className="post__header">
+		<div className="PostArticle" onDoubleClick={() => onClickEdit()}>
+			<li className="PostArticle-wrapper">
+				<div className="PostArticle__header">
 					<div className="post__title">{post.title}</div>
 					<div className="post__author">{post.author}</div>
 				</div>
-				<textarea className="post__content">{post.content}</textarea>
+				<div className="post__content">{post.content}</div>
 			</li>
 		</div>
 	);
