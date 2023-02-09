@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import BlogList from "./components/BlogList/BlogList";
+import Header from "./components/containers/Header/Header";
+import Form from "./components/containers/Form/Form";
+import BlogList from "./components/containers/BlogList/BlogList";
 import "./App.css";
 
 let s4 = () => {
@@ -40,7 +40,6 @@ function App() {
 
 	useEffect(() => {
 		document.body.className = theme;
-		console.log("it was changed", theme);
 	}, [theme]);
 
 	return (
@@ -50,6 +49,8 @@ function App() {
 				isAuthenticated={isAuthenticated}
 				setTheme={setTheme}
 				theme={theme}
+				posts={posts}
+				setPosts={(posts) => setPosts(posts)}
 			/>
 			{isAuthenticated && (
 				<>
