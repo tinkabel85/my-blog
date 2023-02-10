@@ -1,5 +1,5 @@
 .PostArticle {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	height: auto;
 	border: 1px solid grey;
@@ -7,9 +7,11 @@
 	border-radius: 3px;
 	background-color: whitesmoke;
 	padding: 5px;
+	display: flex;
 
 	&-wrapper {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		flex-wrap: nowrap;
 	}
@@ -28,6 +30,16 @@
 		overflow: scroll;
 		text-indent: 35px;
 		text-align: justify;
+	}
+	&__comments {
+		width: 60%;
+		align-self: flex-end;
+		margin-bottom: 1rem;
+		text-align: end;
+
+		&-text {
+			margin: 0;
+		}
 	}
 }
 
