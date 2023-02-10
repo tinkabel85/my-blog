@@ -1,0 +1,22 @@
+.Comment {
+	display: flex;
+	padding: 5px 10px;
+	color: grey;
+    justify-content: space-between;
+    min-height: 30%;
+
+	&__author {
+		font-size: 13px;
+		font-weight: bold;
+        margin-right: 5px;
+	}
+
+	&__content {
+        width: 70%;
+        padding: 3px;
+		text-align: justify;
+		border: 1px dotted grey;
+		border-radius: 0.3em;
+        
+	}
+}

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./PostArticle.scss";
+import CommentsList from "../../components/CommentsList/CommentsList";
+import CommentForm from "../CommentForm/CommentForm";
 
 function PostArticle(props) {
 	const { post, setPosts, posts } = props;
@@ -21,6 +23,7 @@ function PostArticle(props) {
 					title: postTitle,
 					author: postAuthor,
 					content: postContent,
+					comments: [],
 				};
 			}
 			return p;
@@ -56,15 +59,41 @@ function PostArticle(props) {
 			</div>
 		</div>
 	) : (
-		<div className="PostArticle" onDoubleClick={() => onClickEdit()}>
-			<li className="PostArticle-wrapper">
-				<div className="PostArticle__header">
-					<div className="post__title">{post.title}</div>
-					<div className="post__author">{post.author}</div>
-				</div>
-				<div className="post__content">{post.content}</div>
-			</li>
-		</div>
+		<>
+			<div className="PostArticle" onDoubleClick={() => onClickEdit()}>
+				<li className="PostArticle-wrapper">
+					<div className="PostArticle__header">
+						<div className="PostArticle__header--title">
+							Title: {post.title}
+						</div>
+						<div className="PostArticle__header--author">
+							Author: {post.author}
+						</div>
+					</div>
+					<div className="PostArticle__content">{post.content}</div>
+				</li>
+			</div>
+			<div className="PostArticle__comments">
+				<p className="PostArticle__comments-text">Join the discussion!</p>
+
+				<CommentForm
+					addComment={(comment) => {
+						const newPosts = [...posts].map((p) => {
+							if (post.id === p.id) {
+								return {
+									...p,
+									comments: [...post.comments, comment],
+								};
+							}
+							return p;
+						});
+
+						setPosts(newPosts);
+					}}
+				/>
+				<CommentsList comments={post.comments} />
+			</div>
+		</>
 	);
 }
 

@@ -1,0 +1,38 @@
+.CommentForm {
+	width: 100%;
+	margin-bottom: 10px;
+
+	&__wrapper {
+		height: 2rem;
+		border: 2px solid #ccc;
+	}
+
+	&__author {
+		height: 2rem;
+		border: 2px solid #ccc;
+	}
+
+	// & input:focus {
+	// 	outline: none;
+	// 	border: 2px solid rgb(195, 168, 193);
+	// }
+
+	&__text {
+        width: 90%;
+		border: none;
+		outline: none;
+        text-align:start;
+        height: 100%;
+	}
+
+	&__btn {
+		background-color: transparent;
+		border: none;
+		outline: none;
+        height: 100%;
+	}
+}
+
+#btn--enabled {
+	color: rgb(52, 52, 209);
+}

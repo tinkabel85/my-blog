@@ -10,7 +10,7 @@ function Login(props) {
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleLogin = (e) => {
 		e.preventDefault();
 		if (!userName || !password) {
 			return alert("User name or user password cannot be empty");
@@ -25,8 +25,8 @@ function Login(props) {
 			console.log("error, user is not found");
 			return alert("Your username or password are not valid");
 		} else {
-            let verifiedUser = { userName, password };
-			localStorage.setItem("varifiedUser", JSON.stringify(verifiedUser));
+			let verifiedUser = { userName, password };
+			localStorage.setItem("verifiedUser", JSON.stringify(verifiedUser));
 			props.setIsAuthenticated(true);
 			console.log("Your are successfully logged in");
 		}
@@ -35,16 +35,19 @@ function Login(props) {
 	};
 
 	useEffect(() => {
-		console.log("smth");
 		let verifiedUser = JSON.parse(localStorage.getItem("varifiedUser"));
 		if (verifiedUser) {
 			const user = storedUsers.find(
-				(user) => user.username === verifiedUser.userName && user.password === verifiedUser.password);
-            if (user) {
-                props.setIsAuthenticated(true);
-            }
+				(user) =>
+					user.username === verifiedUser.userName &&
+					user.password === verifiedUser.password
+			);
+			if (user) {
+				props.setIsAuthenticated(true);
+				console.log('verified is true')
+			}
 		}
-	}, [props.isAuthenticated, userName, password]);
+	}, [props.isAuthenticated]);
 
 	return (
 		<div className="Login">
@@ -52,7 +55,7 @@ function Login(props) {
 				You need to login to access posts. <br></br>Please enter your username
 				and password and click Login.
 			</div>
-			<form onSubmit={handleSubmit} className="Login__form">
+			<form onSubmit={handleLogin} className="Login__form">
 				<input
 					className="Login__form-input"
 					value={userName}

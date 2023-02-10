@@ -1,15 +1,17 @@
 .PostArticle {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
-	height: 100px;
+	height: auto;
 	border: 1px solid grey;
 	margin-bottom: 5px;
 	border-radius: 3px;
-	overflow: scroll;
 	background-color: whitesmoke;
+	padding: 5px;
+	display: flex;
 
 	&-wrapper {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		flex-wrap: nowrap;
 	}
@@ -17,11 +19,27 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 5px 30px;
+		letter-spacing: 0.1rem;
+		color: #c4a3a3;
 	}
 
 	&__content {
 		color: rgb(86, 85, 85);
-		padding: 5px;
+		padding: 20px;
+		height: 100px;
+		overflow: scroll;
+		text-indent: 35px;
+		text-align: justify;
+	}
+	&__comments {
+		width: 60%;
+		align-self: flex-end;
+		margin-bottom: 1rem;
+		text-align: end;
+
+		&-text {
+			margin: 0;
+		}
 	}
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import BlogList from "./components/BlogList/BlogList";
+import Header from "./components/containers/Header/Header";
+import Form from "./components/containers/Form/Form";
+import BlogList from "./components/containers/BlogList/BlogList";
 import "./App.css";
 
 let s4 = () => {
@@ -12,7 +12,9 @@ let s4 = () => {
 
 function App() {
 	const [theme, setTheme] = useState("light");
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(
+		localStorage.getItem("verifiedUser") ? true : false
+	);
 	const [posts, setPosts] = useState(() => {
 		const postsArr = JSON.parse(localStorage.getItem("posts"));
 		if (!postsArr) {
@@ -22,12 +24,14 @@ function App() {
 					title: "Post 1",
 					author: "Author1",
 					content: "Content of post 1",
+					comments: [{author: 'Oksana', content: 'Hello'}],
 				},
 				{
 					id: s4(),
 					title: "Post 2",
 					author: "Author12",
 					content: "Content of post 2",
+					comments: [],
 				},
 			];
 		}
@@ -40,8 +44,9 @@ function App() {
 
 	useEffect(() => {
 		document.body.className = theme;
-		console.log("it was changed", theme);
 	}, [theme]);
+
+	//const [filteredPosts, setFilteredPosts] = useState([]);
 
 	return (
 		<div className="App">
@@ -50,6 +55,8 @@ function App() {
 				isAuthenticated={isAuthenticated}
 				setTheme={setTheme}
 				theme={theme}
+				posts={posts}
+				setPosts={(posts) => setPosts(posts)}
 			/>
 			{isAuthenticated && (
 				<>
@@ -57,7 +64,11 @@ function App() {
 						generateId={s4}
 						addPost={(post) => setPosts([...posts, post])}
 					/>
-					<BlogList posts={posts} setPosts={setPosts} />
+					<BlogList
+						posts={posts}
+						//setFilteredPost={(filteredPosts) => setFilteredPosts(posts)}
+						setPosts={setPosts}
+					/>
 				</>
 			)}
 		</div>
