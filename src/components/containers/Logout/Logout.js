@@ -4,13 +4,15 @@ import "./Logout.scss";
 function Logout(props) {
 	const handleLogout = () => {
 		props.setIsAuthenticated(false);
+		console.log("isAuthenticated is false");
+		localStorage.removeItem("verifiedUser");
 	};
 
-	useEffect(() => {
-		if (!props.isAuthenticated) {
-			localStorage.removeItem("verifiedUser");
-		}
-	}, [props.isAuthenticated]);
+	// useEffect(() => {
+	// 	if (!props.isAuthenticated) {
+	// 		localStorage.removeItem("verifiedUser");
+	// 	}
+	// }, [props.isAuthenticated]);
 
 	return (
 		<div className="Logout">
