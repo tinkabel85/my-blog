@@ -11,8 +11,10 @@ function Header(props) {
 	const changeTheme = () => {
 		if (props.theme === "light") {
 			props.setTheme("dark");
+			props.setBtnThemeText('Light Mode');
 		} else {
 			props.setTheme("light");
+			props.setBtnThemeText("Dark Mode");
 		}
 	};
 
@@ -33,12 +35,13 @@ function Header(props) {
 					props.setPosts(filteredList);
 				}}
 			></input>
-			<Logout
-				setIsAuthenticated={props.setIsAuthenticated}
-				isAuthenticated={props.isAuthenticated}
-			/>
+			{props.isAuthenticated && (
+				<Logout
+					setIsAuthenticated={props.setIsAuthenticated}
+					isAuthenticated={props.isAuthenticated}
+				/>)}
 			<button className="Header__btn--theme" onClick={changeTheme}>
-				Change Theme
+				{props.btnThemeText}
 			</button>
 			<h1 className="Header__title">This is Oksana's blog</h1>
 			{!props.isAuthenticated && (

@@ -37,6 +37,7 @@ function PostArticle(props) {
 		setEditing(false);
 	};
 
+
 	return isEditing ? (
 		<div className="PostArticle-edits">
 			<input

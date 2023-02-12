@@ -3,16 +3,16 @@ import { useState } from "react";
 import "./CommentForm.scss";
 
 function CommentForm(props) {
-	const [author, setAuthor] = useState("");
 	const [content, setContent] = useState("");
 
+let verifiedUser = JSON.parse(localStorage.getItem("verifiedUser"));
+	
 	const handleCommentSubmit = (e) => {
 		e.preventDefault();
 		props.addComment({
-			author,
+			author: verifiedUser.userName,
 			content,
 		});
-		setAuthor("");
 		setContent("");
 	};
 
@@ -31,29 +31,20 @@ function CommentForm(props) {
 				className="CommentForm"
 			>
 				<input
-					onInput={(e) => setAuthor(e.target.value)}
+					onInput={(e) => setContent(e.target.value)}
 					type="text"
-					placeholder="your name"
-					value={author}
-					className="CommentForm__author"
+					placeholder="add your comment..."
+					value={content}
+					className="CommentForm__text"
 				></input>
-				<div className="CommentForm__wrapper">
-					<input
-						onInput={(e) => setContent(e.target.value)}
-						type="text"
-						placeholder="add your comment..."
-						value={content}
-						className="CommentForm__text"
-					></input>
-					<input
-						onClick={handleCommentSubmit}
-						type="submit"
-						value="post"
-						disabled={enableCommentButton()}
-						id={changeButtonStyle()}
-						className="CommentForm__btn"
-					></input>
-				</div>
+				<input
+					onClick={handleCommentSubmit}
+					type="submit"
+					value="post"
+					disabled={enableCommentButton()}
+					id={changeButtonStyle()}
+					className="CommentForm__btn"
+				></input>
 			</form>
 		</div>
 	);

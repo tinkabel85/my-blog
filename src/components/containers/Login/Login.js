@@ -15,8 +15,6 @@ function Login(props) {
 		if (!userName || !password) {
 			return alert("User name or user password cannot be empty");
 		}
-		console.log(userName);
-		console.log(password);
 
 		const user = storedUsers.find(
 			(user) => user.username === userName && user.password === password
@@ -35,7 +33,7 @@ function Login(props) {
 	};
 
 	useEffect(() => {
-		let verifiedUser = JSON.parse(localStorage.getItem("varifiedUser"));
+		let verifiedUser = JSON.parse(localStorage.getItem("verifiedUser"));
 		if (verifiedUser) {
 			const user = storedUsers.find(
 				(user) =>

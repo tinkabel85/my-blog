@@ -1,12 +1,9 @@
 import { useEffect } from "react";
+import "./Logout.scss";
 
 function Logout(props) {
-	console.log(props.isAuthenticated);
-
 	const handleLogout = () => {
 		props.setIsAuthenticated(false);
-		console.log("I am logged out");
-		console.log(props.isAuthenticated);
 	};
 
 	useEffect(() => {
@@ -18,7 +15,7 @@ function Logout(props) {
 	return (
 		<div className="Logout">
 			<button className="Logout__btn" onClick={handleLogout}>
-				Logout
+				Sign out
 			</button>
 		</div>
 	);

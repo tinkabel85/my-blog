@@ -12,6 +12,8 @@ let s4 = () => {
 
 function App() {
 	const [theme, setTheme] = useState("light");
+	const [btnThemeText, setBtnThemeText] = useState("Dark Mode");
+
 	const [isAuthenticated, setIsAuthenticated] = useState(
 		localStorage.getItem("verifiedUser") ? true : false
 	);
@@ -57,6 +59,8 @@ function App() {
 				theme={theme}
 				posts={posts}
 				setPosts={(posts) => setPosts(posts)}
+				btnThemeText={btnThemeText}
+				setBtnThemeText={setBtnThemeText}
 			/>
 			{isAuthenticated && (
 				<>
