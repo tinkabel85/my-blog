@@ -12,7 +12,6 @@ function PostArticle({ post, posts }) {
 	const [postTitle, setPostTitle] = useState(post.title);
 	const [postAuthor, setPostAuthor] = useState(post.author);
 	const [postContent, setPostContent] = useState(post.content);
-	console.log("checking posts", posts);
 
 	const onClickEdit = (post) => {
 		setEditing(true);
@@ -41,7 +40,7 @@ function PostArticle({ post, posts }) {
 	};
 
 	const addComment = (comment) => {
-		const updatedPosts = [...posts].map((p) => {
+		const updatedPosts = state.posts.map((p) => {
 			if (post.id === p.id) {
 				return {
 					...p,
@@ -50,6 +49,7 @@ function PostArticle({ post, posts }) {
 			}
 			return p;
 		});
+
 		dispatch({ type: Actions.updatePosts, payload: { updatedPosts } });
 	};
 
@@ -93,9 +93,7 @@ function PostArticle({ post, posts }) {
 				<p className="PostArticle__comments-text">Join the discussion!</p>
 
 				<CommentForm addComment={addComment} />
-					<CommentsList
-						// comments={post.comments}
-					/>
+				<CommentsList comments={post.comments} />
 			</div>
 		</>
 	);

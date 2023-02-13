@@ -6,11 +6,12 @@ import "./CommentsList.scss";
 
 function CommentsList(props) {
 	const { state } = useContext(StateContext);
-	const { comments } = state;
+	console.log(state.posts)
+
 
 	return (
 		<ul className="CommentsList">
-			{comments ? comments.map((comment, i) => (
+			{props.comments ? props.comments.map((comment, i) => (
 				<li key={i}>
 					<Comment author={comment.author} content={comment.content} />
 				</li>
