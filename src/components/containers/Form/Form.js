@@ -18,6 +18,7 @@ function Form(props) {
 			author: postAuthor,
 			content: postContent,
 		});
+		console.log('i am a new post added')
 		setPostTitle("");
 		setPostAuthor("");
 		setPostContent("");

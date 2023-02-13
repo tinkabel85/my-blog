@@ -92,7 +92,7 @@ function PostArticle(props) {
 						setPosts(newPosts);
 					}}
 				/>
-				<CommentsList comments={post.comments} />
+					<CommentsList comments={post.comments}  />
 			</div>
 		</>
 	);
