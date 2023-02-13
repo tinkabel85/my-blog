@@ -37,6 +37,7 @@ function PostArticle(props) {
 		setEditing(false);
 	};
 
+
 	return isEditing ? (
 		<div className="PostArticle-edits">
 			<input
@@ -91,7 +92,7 @@ function PostArticle(props) {
 						setPosts(newPosts);
 					}}
 				/>
-				<CommentsList comments={post.comments} />
+					<CommentsList comments={post.comments}  />
 			</div>
 		</>
 	);
