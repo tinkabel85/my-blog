@@ -1,11 +1,12 @@
 import Actions from "../Actions";
-import initialState from "../initialState";
 
 function stateReducer(state, action) {
+	console.log(action);
 	switch (action.type) {
 		case Actions.verifyUser:
 			return { ...state, isAuthenticated: true };
 		case Actions.addPosts:
+			console.log(action);
 			return {
 				...state,
 				posts: [...state.posts, ...action.payload.posts],
@@ -20,7 +21,8 @@ function stateReducer(state, action) {
 			return { ...state, isAuthenticated: true };
 		case Actions.updatePosts:
 			return { ...state, posts: action.payload.updatedPosts };
-
+		case Actions.setFiltered:
+			return { ...state, filtered: action.payload.filtered };
 		default:
 			return state;
 	}

@@ -10,7 +10,6 @@ import { StateContext } from "../../../state/context";
 function Header(props) {
 	const { state, dispatch } = useContext(StateContext);
 	const [filteredList, setSearchInput] = useSearch(state.posts);
-	//const [filteredPosts, setFilteredPosts] = useState(props.posts);
 
 	const changeTheme = () => {
 		if (state.theme === "light") {
@@ -36,12 +35,12 @@ function Header(props) {
 		dispatch({ type: Actions.login });
 	};
 
-	const updatePosts = (filteredList) => {
-		dispatch({type: Actions.addPosts, payload: filteredList})
-	}
-	// useEffect(() => {
-	// 	setFilteredPosts(filteredList);
-	// }, [filteredList]);
+	useEffect(() => {
+		dispatch({
+			type: Actions.setFiltered,
+			payload: { filtered: filteredList },
+		});
+	}, [filteredList]);
 
 	return (
 		<div className="Header">
@@ -51,7 +50,6 @@ function Header(props) {
 				placeholder="Search..."
 				onInput={(e) => {
 					setSearchInput(e.target.value);
-					updatePosts(filteredList);
 				}}
 			></input>
 			{state.isAuthenticated && (

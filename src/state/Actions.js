@@ -7,6 +7,7 @@ const Actions = {
 	login: "login",
 	updatePosts: "updatePosts",
 	resetPost: "resetPost",
+	setFiltered: "setFiltered"
 };
 
 export default Actions;

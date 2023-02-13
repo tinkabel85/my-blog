@@ -1,4 +1,4 @@
-import { useContext, useState, useReducer } from "react";
+import { useContext, useState} from "react";
 import { StateContext } from "../../../state/context";
 import Actions from "../../../state/Actions";
 import "./Form.scss";
