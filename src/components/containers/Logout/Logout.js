@@ -1,18 +1,16 @@
-import { useEffect } from "react";
+import { useContext } from "react";
+import { StateContext } from "../../../state/context";
+import Actions from "../../../state/Actions";
 import "./Logout.scss";
 
 function Logout(props) {
+	const { state, dispatch } = useContext(StateContext);
+
 	const handleLogout = () => {
-		props.setIsAuthenticated(false);
+		dispatch({ type: Actions.logout });
 		console.log("isAuthenticated is false");
 		localStorage.removeItem("verifiedUser");
 	};
-
-	// useEffect(() => {
-	// 	if (!props.isAuthenticated) {
-	// 		localStorage.removeItem("verifiedUser");
-	// 	}
-	// }, [props.isAuthenticated]);
 
 	return (
 		<div className="Logout">

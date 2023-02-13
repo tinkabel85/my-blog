@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { StateContext } from "../../../state/context";
 import "./PostArticle.scss";
 import CommentsList from "../../components/CommentsList/CommentsList";
 import CommentForm from "../CommentForm/CommentForm";
+import Actions from "../../../state/Actions";
 
-function PostArticle(props) {
-	const { post, setPosts, posts } = props;
+function PostArticle({ post, posts }) {
+	const { state, dispatch } = useContext(StateContext);
+
 	const [isEditing, setEditing] = useState(false);
 	const [postTitle, setPostTitle] = useState(post.title);
 	const [postAuthor, setPostAuthor] = useState(post.author);
 	const [postContent, setPostContent] = useState(post.content);
+	console.log("checking posts", posts);
 
 	const onClickEdit = (post) => {
 		setEditing(true);
@@ -16,7 +20,7 @@ function PostArticle(props) {
 	};
 
 	const handleSave = () => {
-		const newPosts = [...posts].map((p) => {
+		const updatedPosts = state.posts.map((p) => {
 			if (post.id === p.id) {
 				return {
 					...p,
@@ -28,8 +32,7 @@ function PostArticle(props) {
 			}
 			return p;
 		});
-
-		setPosts(newPosts);
+		dispatch({ type: Actions.updatePosts, payload: { updatedPosts } });
 		setEditing(false);
 	};
 
@@ -37,6 +40,18 @@ function PostArticle(props) {
 		setEditing(false);
 	};
 
+	const addComment = (comment) => {
+		const updatedPosts = [...posts].map((p) => {
+			if (post.id === p.id) {
+				return {
+					...p,
+					comments: [...post.comments, comment],
+				};
+			}
+			return p;
+		});
+		dispatch({ type: Actions.updatePosts, payload: { updatedPosts } });
+	};
 
 	return isEditing ? (
 		<div className="PostArticle-edits">
@@ -77,22 +92,10 @@ function PostArticle(props) {
 			<div className="PostArticle__comments">
 				<p className="PostArticle__comments-text">Join the discussion!</p>
 
-				<CommentForm
-					addComment={(comment) => {
-						const newPosts = [...posts].map((p) => {
-							if (post.id === p.id) {
-								return {
-									...p,
-									comments: [...post.comments, comment],
-								};
-							}
-							return p;
-						});
-
-						setPosts(newPosts);
-					}}
-				/>
-					<CommentsList comments={post.comments}  />
+				<CommentForm addComment={addComment} />
+					<CommentsList
+						// comments={post.comments}
+					/>
 			</div>
 		</>
 	);

@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { StateContext } from "../../../state/context";
+import Actions from "../../../state/Actions";
 import "./Login.scss";
 
 const storedUsers = [
@@ -7,6 +9,7 @@ const storedUsers = [
 ];
 
 function Login(props) {
+	const { state, dispatch } = useContext(StateContext);
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -25,7 +28,8 @@ function Login(props) {
 		} else {
 			let verifiedUser = { userName, password };
 			localStorage.setItem("verifiedUser", JSON.stringify(verifiedUser));
-			props.setIsAuthenticated(true);
+			//props.setIsAuthenticated(true);
+			dispatch({ type: Actions.login });
 			console.log("Your are successfully logged in");
 		}
 		setUserName("");
@@ -41,7 +45,7 @@ function Login(props) {
 					user.password === verifiedUser.password
 			);
 			if (user) {
-				props.setIsAuthenticated(true);
+				dispatch({ type: Actions.verifyUser });
 				console.log('verified is true')
 			}
 		}
