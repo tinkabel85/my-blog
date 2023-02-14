@@ -3,7 +3,7 @@ import { useContext } from "react";
 import "./Header.scss";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
-import useSearch from "../../Hooks/useSearch/useSearch";
+import useSearch from "../../../Hooks/useSearch/useSearch";
 import Actions from "../../../state/Actions";
 import { StateContext } from "../../../state/context";
 
