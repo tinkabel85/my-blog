@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, createContext, useEffect, useReducer } from "react";
 import Header from "./components/containers/Header/Header";
 import Form from "./components/containers/Form/Form";
 import BlogList from "./components/containers/BlogList/BlogList";
 import "./App.css";
+import initialState from "./state/initialState";
+import stateReducer from "./state/reducer/stateReducer";
+import Actions from "./state/Actions";
+import { StateContext } from "./state/context";
 
 let s4 = () => {
 	return Math.floor((1 + Math.random()) * 0x10000)
@@ -11,22 +15,21 @@ let s4 = () => {
 };
 
 function App() {
-	const [theme, setTheme] = useState("light");
-	const [btnThemeText, setBtnThemeText] = useState("Dark Mode");
+	const [state, dispatch] = useReducer(stateReducer, initialState);
 
-	const [isAuthenticated, setIsAuthenticated] = useState(
-		localStorage.getItem("verifiedUser") ? true : false
-	);
-	const [posts, setPosts] = useState(() => {
-		const postsArr = JSON.parse(localStorage.getItem("posts"));
+	useEffect(() => {
+		if (localStorage.getItem("verifiedUser")) {
+			dispatch({ type: Actions.verifyUser });
+		}
+		let postsArr = JSON.parse(localStorage.getItem("posts"));
 		if (!postsArr) {
-			return [
+			postsArr = [
 				{
 					id: s4(),
 					title: "Post 1",
 					author: "Author1",
 					content: "Content of post 1",
-					comments: [{author: 'Oksana', content: 'Hello'}],
+					comments: [{ author: "Oksana", content: "Hello" }],
 				},
 				{
 					id: s4(),
@@ -37,46 +40,33 @@ function App() {
 				},
 			];
 		}
-		return postsArr;
-	});
+		dispatch({ type: Actions.addPosts, payload: { posts: postsArr } });
+	}, []);
 
 	useEffect(() => {
-		localStorage.setItem("posts", JSON.stringify(posts));
-	}, [posts]);
+		localStorage.setItem("posts", JSON.stringify(state.posts));
+	}, [state.posts]);
 
 	useEffect(() => {
-		document.body.className = theme;
-	}, [theme]);
+		document.body.className = state.theme;
+	}, [state.theme]);
 
 	//const [filteredPosts, setFilteredPosts] = useState([]);
 
 	return (
-		<div className="App">
-			<Header
-				setIsAuthenticated={setIsAuthenticated}
-				isAuthenticated={isAuthenticated}
-				setTheme={setTheme}
-				theme={theme}
-				posts={posts}
-				setPosts={(posts) => setPosts(posts)}
-				btnThemeText={btnThemeText}
-				setBtnThemeText={setBtnThemeText}
-			/>
-			{isAuthenticated && (
-				<>
-					<Form
-						generateId={s4}
-						addPost={(post) => setPosts([...posts, post])}
-					/>
-					<BlogList
-						posts={posts}
-						//setFilteredPost={(filteredPosts) => setFilteredPosts(posts)}
-						setPosts={setPosts}
-					/>
-				</>
-			)}
-		</div>
+		<StateContext.Provider value={{ state, dispatch }}>
+			<div className="App">
+				<Header />
+				{state.isAuthenticated && (
+					<>
+						<Form generateId={s4} />
+						<BlogList />
+					</>
+				)}
+			</div>
+		</StateContext.Provider>
 	);
 }
 
 export default App;
+

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState} from "react";
+import { StateContext } from "../../../state/context";
+import Actions from "../../../state/Actions";
 import "./Form.scss";
 
 function Form(props) {
+	const { state, dispatch } = useContext(StateContext);
 	const [postTitle, setPostTitle] = useState("");
 	const [postAuthor, setPostAuthor] = useState("");
 	const [postContent, setPostContent] = useState("");
@@ -12,13 +15,20 @@ function Form(props) {
 			return alert("Your should provide all info");
 		}
 		console.log(postTitle, postAuthor, postContent);
-		props.addPost({
-			id: props.generateId(),
-			title: postTitle,
-			author: postAuthor,
-			content: postContent,
+		dispatch({
+			type: Actions.addPosts,
+			payload: {
+				posts: [
+					{
+						id: props.generateId(),
+						title: postTitle,
+						author: postAuthor,
+						content: postContent,
+					},
+				],
+			},
 		});
-		console.log('i am a new post added')
+		console.log("i am a new post added");
 		setPostTitle("");
 		setPostAuthor("");
 		setPostContent("");

@@ -1,19 +1,29 @@
+import { useContext } from "react";
 import PostArticle from "../PostArticle/PostArticle";
 import "./BlogList.scss";
+import { StateContext } from "../../../state/context";
 
 function BlogList(props) {
-	const { posts, setPosts } = props;
+	const { state } = useContext(StateContext);
+	const { posts, filtered } = state;
+
+	function isFilteredEmpty(filtered) {
+		return filtered.lengh === 0;
+	}
+
+	function postShallBeShown(filtered, post) {
+		return filtered.find((r) => r.id === post.id && r.isShown);
+	}
 
 	return (
 		<ul className="Bloglist">
-			{posts.map((post, index) => (
-				<PostArticle
-					key={index}
-					posts={posts}
-					post={post}
-					setPosts={setPosts}
-				/>
-			))}
+			{posts &&
+				posts.map(
+					(post, index) =>
+						(isFilteredEmpty(filtered) || postShallBeShown(filtered, post)) && (
+							<PostArticle key={index} posts={state.posts} post={post} />
+						)
+				)}
 		</ul>
 	);
 }
