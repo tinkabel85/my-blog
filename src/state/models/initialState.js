@@ -1,6 +1,6 @@
 const initialState = {
-	theme: "light",
-	btnThemeText: "Dark Mode",
+	theme: "dark",
+	btnThemeText: "Light Mode",
 	isAuthenticated: false,
 	posts: [],
 	filtered: [],

@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import Actions from "../../state/Actions";
 
-export default (dispatch, startingValue) => {
-    const [theme, setTheme] = useState(startingValue);
+const useTheme = (dispatch, startingValue) => {
+	const [theme, setTheme] = useState(startingValue);
 
-    useEffect(() => {
+	useEffect(() => {
 		dispatch({
 			type: Actions.changeTheme,
-			payload: { theme: theme === "light" ? "dark" : "light" }
+			payload: { theme: theme === "light" ? "dark" : "light" },
 		});
 		dispatch({
 			type: Actions.changeBtnThemeText,
-			payload: { btnThemeText: theme === "light" ? "Light Mode" : "Dark Mode"},
+			payload: { btnThemeText: theme === "light" ? "Light Mode" : "Dark Mode" },
 		});
-    }, [theme]);
+	}, [theme, dispatch]);
 
-    return [theme, setTheme];
+	return [theme, setTheme];
 };
+export default useTheme;
