@@ -4,6 +4,7 @@ const initialState = {
 	isAuthenticated: false,
 	posts: [],
 	filtered: [],
+	verifiedUser: null,
 };
 
 export default initialState;

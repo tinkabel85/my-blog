@@ -1,5 +1,4 @@
 const Actions = {
-	verifyUser: "verifyUser",
 	addPosts: "addPosts",
 	changeTheme: "changeTheme",
 	changeBtnThemeText: "changeBtnThemeText",

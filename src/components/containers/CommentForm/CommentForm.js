@@ -1,23 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { StateContext } from "../../../state/context";
 import "./CommentForm.scss";
 
 function CommentForm(props) {
+	const { state } = useContext(StateContext)
 	const [content, setContent] = useState("");
-
-let verifiedUser = JSON.parse(localStorage.getItem("verifiedUser"));
 	
 	const handleCommentSubmit = (e) => {
 		e.preventDefault();
 		props.addComment({
-			author: verifiedUser.userName,
+			author: state.verifiedUser.userName,
 			content,
 		});
 		setContent("");
-	};
-
-	const enableCommentButton = () => {
-		return content ? false : true;
 	};
 
 	const changeButtonStyle = () => {
@@ -26,10 +21,7 @@ let verifiedUser = JSON.parse(localStorage.getItem("verifiedUser"));
 
 	return (
 		<div>
-			<form
-				//onSubmit={handleCommentSubmit}
-				className="CommentForm"
-			>
+			<form className="CommentForm">
 				<input
 					onInput={(e) => setContent(e.target.value)}
 					type="text"
@@ -41,7 +33,7 @@ let verifiedUser = JSON.parse(localStorage.getItem("verifiedUser"));
 					onClick={handleCommentSubmit}
 					type="submit"
 					value="post"
-					disabled={enableCommentButton()}
+					disabled={!content}
 					id={changeButtonStyle()}
 					className="CommentForm__btn"
 				></input>

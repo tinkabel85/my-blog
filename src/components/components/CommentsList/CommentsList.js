@@ -1,6 +1,7 @@
 import Comment from "../Comment/Comment";
 import "./CommentsList.scss";
 
+
 function CommentsList(props) {
 	return (
 		<ul className="CommentsList">

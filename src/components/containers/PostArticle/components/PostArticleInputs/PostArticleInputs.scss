@@ -1,0 +1,16 @@
+.PostArticleInputs {
+	max-width: 1080px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	margin-bottom: 10px;
+
+	&__buttons {
+		display: flex;
+		align-self: flex-end;
+		
+		button {
+			margin-right: 10px;
+		}
+	}
+}

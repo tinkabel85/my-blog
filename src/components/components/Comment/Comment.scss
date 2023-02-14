@@ -12,11 +12,10 @@
 	}
 
 	&__content {
-        width: 80%;
+		max-width: 1080px;
         padding: 3px;
 		text-align: justify;
 		border: 1px dotted grey;
 		border-radius: 0.3em;
-        
 	}
 }

@@ -1,5 +1,5 @@
-.Form {
-	width: 70%;
+.CreatePostForm {
+	max-width: 400px;
 	margin: auto;
 	margin-bottom: 30px;
 	display: flex;
@@ -21,15 +21,14 @@
 			min-width: 100%;
 			resize: both;
 		}
+
+		&:focus {
+			outline: none;
+			border: 2px solid rgb(195, 168, 193);
+		}
 	}
 
-	&__input:focus {
-		outline: none;
-		border: 2px solid rgb(195, 168, 193);
-	}
-
-	&__btn {
-		width: 13%;
+	&__button {
 		align-self: flex-end;
 		background: rgb(203, 224, 216);
 		padding: 3px 7px;

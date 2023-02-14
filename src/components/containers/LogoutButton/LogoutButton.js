@@ -1,14 +1,10 @@
-import { useContext } from "react";
-import { StateContext } from "../../../state/context";
 import Actions from "../../../state/Actions";
-import "./Logout.scss";
+import "./LogoutButton.scss";
 
-function Logout(props) {
-	const { state, dispatch } = useContext(StateContext);
 
+function LogoutButton({dispatch}) {
 	const handleLogout = () => {
 		dispatch({ type: Actions.logout });
-		console.log("isAuthenticated is false");
 		localStorage.removeItem("verifiedUser");
 	};
 
@@ -21,4 +17,4 @@ function Logout(props) {
 	);
 }
 
-export default Logout;
+export default LogoutButton;
