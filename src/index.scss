@@ -1,0 +1,28 @@
+html {
+	font-size: 16px;
+}
+
+* {
+	font-weight: 400;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+  	min-height: 100vh;
+  	transition: background 0.5s ease-in-out;
+
+  &.light {
+	  background-color: white;
+  }
+  
+  &.dark {
+	  background-color: rgb(69, 68, 68);
+	  color: #fff;
+  }
+}
+
+#root {
+  height: 96vh;
+}

@@ -9,11 +9,6 @@
 		border: 2px solid #ccc;
 	}
 
-	// &__wrapper:focus {
-	// 	outline: none;
-	// 	border: 2px solid rgb(195, 168, 193);
-	// }
-
 	&__text {
 		width: 100%;
 		border: none;
@@ -28,8 +23,8 @@
 		outline: none;
 		height: 100%;
 	}
-}
 
-#btn--enabled {
-	color: rgb(52, 52, 209);
+	#btn--enabled {
+		color: rgb(52, 52, 209);
+	}
 }

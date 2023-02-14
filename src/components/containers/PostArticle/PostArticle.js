@@ -1,102 +1,17 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { StateContext } from "../../../state/context";
+import PostArticleInputs from "./components/PostArticleInputs/PostArticleInputs";
+import PostArticleView from "./components/PostArticleView/PostArticleView";
 import "./PostArticle.scss";
-import CommentsList from "../../components/CommentsList/CommentsList";
-import CommentForm from "../CommentForm/CommentForm";
-import Actions from "../../../state/Actions";
 
-function PostArticle({ post, posts }) {
+
+function PostArticle({ post }) {
 	const { state, dispatch } = useContext(StateContext);
-
 	const [isEditing, setEditing] = useState(false);
-	const [postTitle, setPostTitle] = useState(post.title);
-	const [postAuthor, setPostAuthor] = useState(post.author);
-	const [postContent, setPostContent] = useState(post.content);
 
-	const onClickEdit = (post) => {
-		setEditing(true);
-		console.log("edits");
-	};
-
-	const handleSave = () => {
-		const updatedPosts = state.posts.map((p) => {
-			if (post.id === p.id) {
-				return {
-					...p,
-					title: postTitle,
-					author: postAuthor,
-					content: postContent,
-					comments: [],
-				};
-			}
-			return p;
-		});
-		dispatch({ type: Actions.updatePosts, payload: { updatedPosts } });
-		setEditing(false);
-	};
-
-	const handleCancel = () => {
-		setEditing(false);
-	};
-
-	const addComment = (comment) => {
-		const updatedPosts = state.posts.map((p) => {
-			if (post.id === p.id) {
-				return {
-					...p,
-					comments: [...post.comments, comment],
-				};
-			}
-			return p;
-		});
-
-		dispatch({ type: Actions.updatePosts, payload: { updatedPosts } });
-	};
-
-	return isEditing ? (
-		<div className="PostArticle-edits">
-			<input
-				type="text"
-				value={postTitle}
-				onChange={(e) => setPostTitle(e.target.value)}
-			/>
-			<input
-				type="text"
-				value={postAuthor}
-				onChange={(e) => setPostAuthor(e.target.value)}
-			/>
-			<textarea
-				value={postContent}
-				onChange={(e) => setPostContent(e.target.value)}
-			/>
-			<div className="PostArticle-edits__btns">
-				<button onClick={handleSave}>Save</button>
-				<button onClick={handleCancel}>Cancel</button>
-			</div>
-		</div>
-	) : (
-		<>
-			<div className="PostArticle" onDoubleClick={() => onClickEdit()}>
-				<li className="PostArticle-wrapper">
-					<div className="PostArticle__header">
-						<div className="PostArticle__header--title">
-							Title: {post.title}
-						</div>
-						<div className="PostArticle__header--author">
-							Author: {post.author}
-						</div>
-					</div>
-					<div className="PostArticle__content">{post.content}</div>
-				</li>
-			</div>
-			<div className="PostArticle__comments">
-				<p className="PostArticle__comments-text">Join the discussion!</p>
-
-				<CommentForm addComment={addComment} />
-				<CommentsList comments={post.comments} />
-			</div>
-		</>
-	);
+	return (isEditing
+		? <PostArticleInputs dispatch={dispatch} post={post} posts={state.posts} setEditing={setEditing} />
+		: <PostArticleView dispatch={dispatch} post={post} posts={state.posts} setEditing={setEditing} />);
 }
 
 export default PostArticle;
