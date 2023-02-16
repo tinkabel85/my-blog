@@ -1,11 +1,15 @@
+import React from "react";
 import useAuthentication from "../../../hooks/useAuthentication/useAuthentication";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.scss";
 
-
 function LoginForm({ dispatch, isAuthenticated }) {
-	const {
-		setUserName, setPassword, handleLogin, userName, password
-	} = useAuthentication(dispatch, isAuthenticated);
+	const navigate = useNavigate();
+	// const handleLoginFormSubmit = () => {
+	// 	navigate("/");
+	// };
+	const { setUserName, setPassword, handleLogin, userName, password } =
+		useAuthentication(dispatch, isAuthenticated, );
 
 	return (
 		<div className="Login">

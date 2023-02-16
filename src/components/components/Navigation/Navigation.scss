@@ -1,0 +1,14 @@
+.Navigation {
+	display: flex;
+	max-width: 1080px;
+    justify-content: space-around;
+	margin: auto;
+	padding: 20px;
+	color: rgb(86, 85, 85);
+
+    & li {
+        list-style: none;
+    }
+}
+
+

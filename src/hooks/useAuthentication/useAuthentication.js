@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Actions from "../../state/Actions";
 import { users as storedUsers } from "../../state/models/users";
 
-export default function useAuthentication(dispatch, isAuthenticatedStartValue) {
+
+export default function useAuthentication(dispatch, isAuthenticatedStartValue, handleLoginFormSubmit) {
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(isAuthenticatedStartValue);
@@ -18,11 +19,14 @@ export default function useAuthentication(dispatch, isAuthenticatedStartValue) {
 			let verifiedUser = { userName, password };
 			localStorage.setItem("verifiedUser", JSON.stringify(verifiedUser));
 			dispatch({ type: Actions.login, payload: {user: verifiedUser} });
-            setIsAuthenticated(true);
+			setIsAuthenticated(true);
+			handleLoginFormSubmit();
+		
 		}
 
 		setUserName("");
 		setPassword("");
+		
     }
 
 	useEffect(() => {
