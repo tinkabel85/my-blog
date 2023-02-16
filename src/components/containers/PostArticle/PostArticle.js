@@ -9,7 +9,6 @@ import "./PostArticle.scss";
 function PostArticle({ post }) {
 	const { state, dispatch } = useContext(StateContext);
 	const [isEditing, setEditing] = useState(false);
-	const { id } = useParams();
 
 const handleEditClick = () => {
 	if (state.isAuthenticated) {

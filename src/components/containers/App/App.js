@@ -1,17 +1,13 @@
 import { useEffect, useReducer } from "react";
-import { Route, Routes} from "react-router-dom";
+import Routes from "../Routes/Routes";
 import Actions from "../../../state/Actions";
 import { StateContext } from "../../../state/context";
 import initialState from "../../../state/models/initialState";
 import staticDefaultPosts from "../../../state/models/staticDefaultPosts";
 import stateReducer from "../../../state/reducer/stateReducer";
-import BlogList from "../BlogList/BlogList";
-import Form from "../CreatePostForm/CreatePostForm";
-import Header from "../Header/Header";
-import PostArticle from '../PostArticle/PostArticle';
-import Err404Page from "../../pages/Err404Page/Err404Page";
-import "./App.scss";
 import Navigation from "../../components/Navigation/Navigation";
+import Header from "../Header/Header";
+import "./App.scss";
 
 function App() {
 	const [state, dispatch] = useReducer(stateReducer, initialState);
@@ -46,17 +42,7 @@ function App() {
 		<div className="App">
 			<StateContext.Provider value={{ state, dispatch }}>
 				<Header state={state} dispatch={dispatch} />
-				<Navigation />
-				<Routes>
-					<Route path="/posts" element={<BlogList state={state} />} />
-					<Route path="/posts/:id" element={<PostArticle state={state} />} />
-					{state.isAuthenticated && (
-						<>
-							<Route path="/create" element={<Form dispatch={dispatch} />} />
-						</>
-					)}
-					<Route path="*" element={<Err404Page />} />
-				</Routes>
+				<Routes />
 			</StateContext.Provider>
 		</div>
 	);
