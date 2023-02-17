@@ -3,9 +3,8 @@ import useAuthentication from "../../../hooks/useAuthentication/useAuthenticatio
 import "./LoginForm.scss";
 
 function LoginForm({ dispatch, isAuthenticated }) {
-
 	const { setUserName, setPassword, handleLogin, userName, password } =
-		useAuthentication(dispatch, isAuthenticated, );
+		useAuthentication(dispatch, isAuthenticated);
 
 	return (
 		<div className="Login">

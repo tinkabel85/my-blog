@@ -4,16 +4,25 @@ import Actions from "../Actions";
 function stateReducer(state, action) {
 	switch (action.type) {
 		case Actions.login:
-			return { ...state, isAuthenticated: true, verifiedUser: action.payload.user };
+			return {
+				...state,
+				isAuthenticated: true,
+				verifiedUser: action.payload.user,
+			};
 		case Actions.addPosts:
 			return {
 				...state,
 				posts: [
 					...state.posts,
-					...action.payload.posts.map(p => (p.id ? p : {
-						...p,
-						id: generateId() }
-					))],
+					...action.payload.posts.map((p) =>
+						p.id
+							? p
+							: {
+									...p,
+									id: generateId(),
+							}
+					),
+				],
 			};
 		case Actions.changeTheme:
 			return { ...state, theme: action.payload.theme };
@@ -25,6 +34,20 @@ function stateReducer(state, action) {
 			return { ...state, posts: action.payload.updatedPosts };
 		case Actions.setFiltered:
 			return { ...state, filtered: action.payload.filtered };
+		case Actions.setPosts:
+			return {
+				...state,
+				posts: [
+					...action.payload.posts.map((p) =>
+						p.id
+							? p
+							: {
+									...p,
+									id: generateId(),
+							}
+					),
+				],
+			};
 		default:
 			return state;
 	}

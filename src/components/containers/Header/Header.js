@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useSearch from "../../../hooks/useSearch/useSearch";
 import useTheme from "../../../hooks/useTheme/useTheme";
 import Actions from "../../../state/Actions";
-// import LoginForm from "../LoginForm/LoginForm";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import "./Header.scss";
 

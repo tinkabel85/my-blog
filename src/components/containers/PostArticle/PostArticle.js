@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { StateContext } from "../../../state/context";
 import PostArticleInputs from "./components/PostArticleInputs/PostArticleInputs";
 import PostArticleView from "./components/PostArticleView/PostArticleView";
-import { useParams } from "react-router-dom";
 import "./PostArticle.scss";
 
 
