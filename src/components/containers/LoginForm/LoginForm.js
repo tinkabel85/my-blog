@@ -1,11 +1,11 @@
+import React from "react";
 import useAuthentication from "../../../hooks/useAuthentication/useAuthentication";
 import "./LoginForm.scss";
 
-
 function LoginForm({ dispatch, isAuthenticated }) {
-	const {
-		setUserName, setPassword, handleLogin, userName, password
-	} = useAuthentication(dispatch, isAuthenticated);
+
+	const { setUserName, setPassword, handleLogin, userName, password } =
+		useAuthentication(dispatch, isAuthenticated, );
 
 	return (
 		<div className="Login">

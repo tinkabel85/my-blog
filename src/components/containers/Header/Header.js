@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import useSearch from "../../../hooks/useSearch/useSearch";
 import useTheme from "../../../hooks/useTheme/useTheme";
 import Actions from "../../../state/Actions";
-import LoginForm from "../LoginForm/LoginForm";
+// import LoginForm from "../LoginForm/LoginForm";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import "./Header.scss";
 
-
-function Header({state, dispatch}) {
+function Header({ state, dispatch }) {
 	const [filteredList, setSearchInput] = useSearch(state.posts);
 	const [theme, setTheme] = useTheme(dispatch, state.theme);
 
@@ -28,21 +27,20 @@ function Header({state, dispatch}) {
 					setSearchInput(e.target.value);
 				}}
 			></input>
-			{state.isAuthenticated && (<LogoutButton
+			{state.isAuthenticated && (
+				<LogoutButton
 					dispatch={dispatch}
 					setIsAuthenticated={() => dispatch({ type: Actions.logout })}
 					isAuthenticated={state.isAuthenticated}
-				/>)
-			}
-			<button className="Header__btn-theme" onClick={() => setTheme(theme === 'light' ? 'dark': 'light')}>
+				/>
+			)}
+			<button
+				className="Header__btn-theme"
+				onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+			>
 				{state.btnThemeText}
 			</button>
 			<h1 className="Header__title">This is Oksana's blog</h1>
-			{!state.isAuthenticated && (<LoginForm
-					dispatch={dispatch}
-					isAuthenticated={state.isAuthenticated}
-				/>)
-			}
 		</div>
 	);
 }

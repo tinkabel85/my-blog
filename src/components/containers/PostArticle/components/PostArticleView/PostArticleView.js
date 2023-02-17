@@ -3,9 +3,10 @@ import Actions from '../../../../../state/Actions';
 import CommentsList from '../../../../components/CommentsList/CommentsList';
 import CommentForm from '../../../CommentForm/CommentForm';
 import './PostArticleView.scss';
+import { Link } from "react-router-dom";
 
 
-function PostArticleView({post, setEditing, posts, dispatch}) {
+function PostArticleView({post, setEditing, posts, dispatch, showReadMore}) {
 	const addComment = (comment) => {
 		const updatedPosts = posts.map((p) => {
 			if (post.id === p.id) {
@@ -33,6 +34,7 @@ function PostArticleView({post, setEditing, posts, dispatch}) {
                 </div>
                 <div className="PostArticleView__content">{post.content}</div>
             </li>
+            {showReadMore !== false && <Link to={`/post/${post.id}`}>Read more...</Link>}
         </div>
         <div className="PostArticleView__comments">
             <p className="PostArticleView__comments-text">Join the discussion!</p>
