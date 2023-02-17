@@ -9,7 +9,7 @@ function BlogPostDetailPage() {
 	const [post, setPost] = useState(null);
 
 	useEffect(() => {
-		setPost(state.posts.find((p) => p.id === parseInt(id)));
+		setPost(state.posts.find((p) => p.id === id));
 	}, [state.posts, id]);
 
 	return post ? (

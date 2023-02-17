@@ -5,7 +5,7 @@ import { StateContext } from "../../../state/context";
 import initialState from "../../../state/models/initialState";
 import staticDefaultPosts from "../../../state/models/staticDefaultPosts";
 import stateReducer from "../../../state/reducer/stateReducer";
-import Navigation from "../../components/Navigation/Navigation";
+//import Navigation from "../../components/Navigation/Navigation";
 import Header from "../Header/Header";
 import "./App.scss";
 
@@ -23,7 +23,7 @@ function App() {
 			postsArr = staticDefaultPosts;
 		}
 
-		dispatch({ type: Actions.addPosts, payload: { posts: postsArr } });
+		dispatch({ type: Actions.setPosts, payload: { posts: postsArr } });
 	}, []);
 
 	useEffect(() => {
